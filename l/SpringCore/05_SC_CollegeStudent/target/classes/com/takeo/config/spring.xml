@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!-- Setter injection -->
+
+<bean class="com.takeo.pojo.Student" id="stu">
+
+<property name="sno" value="100"></property>
+<property name="sname" value="shiva"></property>
+
+<property name="sadd" value="hyd"></property>
+
+</bean>
+
+
+<!-- College Information -->
+<bean class="com.takeo.pojo.College" id="clg">
+
+<property name="cname" value="Takeo Ackademy"></property>
+<property name="student" ref="stu"></property>
+
+</bean>
+
+
+</beans>

@@ -1,0 +1,1137 @@
+Hibernate------------------->useing Hibernate we can simplify Persistence layer/DAO layer
+Struts----------------------->useing this frameWork S/w We can simplify WebApplications
+Spring---------------------->useing this we can simplify Web And EnterPrise Development...
+SpringCore
+SpringJdbc
+SpringOrm
+SpringMvc--------->Spring-ThirdpartyFrameWorks,SpringWebMvc
+SpringAOP---------->Useing This we can SeparateMiddleWareServices from applications
+SpringJEE------>SpringRMI,Hessan,Burlap,HttpInvoker,jms,ejb
+FrameWork s/w is collection of classes and interfaces To simplify application Development
+we can classfied Three types of Frame Work Softwares
+1)Persistence Framework--->Hibernate
+2)WebFrameWork----------->Struts
+3)EnterPrise FrameWork-------------->Spring
+Spring is F/w to develop java/j2ee based Enterprise applications based on DependencyInjection/inversionofcontroll pricipals.
+
+Ioc(InversionOfControl)orDependency Injection
+================================================
+IOC or DI
+===========
+
+problem:  Dependecylookup: 
+if the resource of the application spending some time to
+search and gather its dependecnt value required in the businesslogic
+from the other resource of the application
+then its is called as Dependency look up.
+In dpendecy lookup resour pulls its dependent values from other 
+resources of the application
+ex: the way we get the jdbc datasource object from jndi registry comes
+under Dependency lookup.
+In dependency look up resource cannot used dependent values directly
+in the business logic.the resource must spend time to search and gather dependent values before untilizing then in businesslogic.
+
+soultion
+======
+uses Dependecy injection... if underlying server software or container
+software or framework sotware or special resour of the application dynamically
+assigns its dependent to resources then it is called as DI
+
+In dependency injection resource can directly use the injected values
+in business logic without spending time to search and gather them.
+
+Ex
+===
+a)Jre/Jvm performs Dependecy injection while instantating classes using parameterized
+constructor.
+b)The way ActionServlet writes form data to form bean class object comes under Dependecy injection.
+c)spring container can perform Dependency injection on SpringBeans
+d)Lifecycle methods,Eventhandling methods cannot perform Dependency injection
+bcz they never give choice to the programmer to pass the explicit data.
+note: Dependency injection might be a Desing pattern,whereas inversion of control is implemented using 
+Dependecy injection.Dependecy injection is the main method to implement inversion of control
+
+
+WhyDependecyInjection?
+
+The complextiy of application increases
+The development time-dependecy increases
+The difficulty for unit testing increases.
+
+
+The process of Injecting(pushing)the depencecies into an object is known as dependecy injection this gives benefits
+
+The applicationd development will become faster
+Dependency will be reduced
+Di provides a proper test enviromnet for the application 
+
+spring f/w software 6 modules
+springcore
+springdao/jdbc
+springmvc
+springorm
+springjee
+springaop
+
+spring
+======
+vendor---> interface21
+author---> rodjhonson
+
+SpringFeatures
+================
+Allows poji/pojo model programming
+pojo --->plain old java added object
+ordinary java class without api dependecy is called pojo class similary an ordinary java interface without api dependecy is called poji.
+interface X -->poji
+{}
+class A -->pojo
+{
+
+
+}
+class C extends GenericServlet{}----->Servlet Class
+================================================================
+    Spring is a light weight and open source framework created by Rod Johnson in 2003. Spring is a complete and a modular framework, i mean spring framework can be used for all layer implementations for a real time application or spring can be used for the development of particular layer of a real time application unlike struts [ only for front end related ] and hibernate [ only for database related ], but with spring we can develop all layers
+    Spring framework is said to be a non-invasive means it doesn’t force a programmer to extend or implement their class from any predefined class or interface given by Spring API, in struts we used to extend Action Class right that’s why struts is said to be invasive
+    In case of struts framework, it will forces the programmer that, the programmer class must extend from the base class provided by struts API
+    Spring is light weight framework because of its POJO model
+    Spring Framework made J2EE application development little easier, by introducing POJO model
+
+Spring having this much of demand because of the following 3 reasons….
+
+    Simplicity
+    Testability
+    Loose Coupling
+
+ 
+Simplicity
+
+Spring framework is simple because as it is non-invasive, POJO and POJI model
+
+ 
+Testability
+
+Actually for writing the spring application, server [Container] is not mandatory, but for  struts applications we need a server, and for EJB too.  If we want to test the application it may need lot of changes in the source and each time we must restart the server to view the changes, which is little tedious and time taking but we can over come this in Spring, for testing spring application server is not mandatory spring has it own container to run the applications.
+
+Spring can be used to develop any kind of java application, means we can develop starting from console application to enterprise level application
+
+ 
+Loose Coupling
+
+In spring objects are loosely coupled,  this is the core concept of spring framework we will see in depth about this loose coupling and how its differ from tight coupling
+
+ ==================================================================================================================================================================================
+SpringCore
+==============
+Springcorecontainer is the basis for the complete springf/w it provides am implementation
+for ioc supporting dependecyinjection.
+this provides a conventient enviromnet to progrmer  basic to enterprise applications
+avoiding the need of writing the factory classes and methods in most of the situations.
+this even helps one to avoid the need of programming the singletons .the springcorecontainer takes the configuration to understnad the bean objects that it has to instantate and manage the lifecycle.
+
+
+
+Differnt file that we can observe while developing spring core module based applications
+1)poji/utilityinterface/businessinterface
+
+--->Declaration of Business methods
+poji is not api dependent
+poji is optional in spring core module applications.
+public interface Wish
+{
+public String getWish(String uname);
+}
+
+2)
+Bean Class/Pojo/ImplClass/Service Provider
+===========================================
+---->implements poji /B.interface
+-->provides definition of Business methods
+-->contains instance variables and appropriate methods
+-->supporting dependecy injection(optional)
+--->user defined life cycle method (optional)
+
+Injections are 3 types
+1)Setter Injection
+2)Constructor Injection
+3)Interface Injection
+
+Spring supports Setter and Constructor Injection
+
+public class WishBean implements Wish
+{
+String name;
+
+public void setName(String name)//setterinjection
+{
+
+}
+WishBean(String name)//constructorinjection
+{
+
+}
+
+
+
+}
+
+3)springcfg file
+==================
+<anyfilename>.xml can become springcfg file 
+contains Beanclass configuration
+contains instructions specfying the mode of D.I
+
+note: spring container reads /loads spring cfg file keep Beanclass object ready by injecting dependent values.
+
+
+BeanFactory beans=new XmlBeanFactory(new FileSystemResource("C:/Documents and Settings/Administrator/Workspaces/Spring/spring_core/src/applicationContext.xml"));
+
+BeanFactory beans=new XmlBeanFactory(new ClasspathResource("/applicationContext.xml"));
+
+BeanFactory is an interface
+To implement BeanFactory interface we will use XmlBeanFactory class
+xmlBeanFactory(Resource res)
+
+Resource is an interface.
+
+Implementing Resource interface Spring f/w software provides FileSystemResource and ClasspathResource
+
+two class provides
+
+Once we use FileSystemResource -->we hv to use absoulte path
+when we are useing ClasspathResource -->we hv to use /relative path
+
+keynotes on BeanFacotry based containers
+===========================================
+It is a light weight container
+it loads spring beans configured in spring configuration file and mangages the lifecycle of the spring bean when we call getBean("springbeanref") so when we call getBean("springref)then only spring bean lifecycle starts.
+Geranlly we will use standalone applications and mobile applications.
+
+eg: spring_core
+eg:spring_core1
+
+SpringBeanLifeCycle
+===============
+Intialization and Destruction
+===============================
+To listen the initialization lifecycle event the bean can implement
+org.springframework.beans.factory.InitializingBean interface.
+
+IntializingBean-->interface
+
+public void afterPropertiesSet()thorws exception
+
+class TestBean implements IntializingBean
+{
+public void afterPropertiesSet()throws Exception
+	{
+		System.out.println("After propertiesSet");
+	//intializationlogic
+	}
+}
+
+note: spring doest not like to write IntializingBean interface application development
+
+
+<bean id="mybean" class="TestBean" init-method="init"/>
+
+
+
+class TestBean 
+{
+public void init()
+{
+//intialization logic
+}
+
+
+}
+
+<bean id="mybean"class="TestBean" init-method="init"/>
+
+
+<beans default-init-method="initialize">
+<bean id="mybean1"class="TestBean" />
+<bean id="mybean2"class="TestBean1" />
+<bean id="mybean3"class="TestBean2" />
+<bean id="mybean3"class="TestBean3" init-method="init" />
+</beans>
+
+
+Destruction
+===============
+DisposableBean-->Interface
+public void destroy()throws Exception
+class TestBean implements DisposableBean
+{
+public void destroy()
+{
+
+}
+}
+class TestBean 
+{
+public void close()
+{
+//de-intialization logic
+}
+
+
+}
+
+
+
+<bean id="mybean"class="TestBean" destroy-method="close"/>
+
+
+<beans default-destroy-method="close">
+<bean id="mybean1"class="TestBean" />
+<bean id="mybean2"class="TestBean1" />
+<bean id="mybean3"class="TestBean2" />
+<bean id="mybean3"class="TestBean3" destroy-method="remove" />
+</beans>
+SpringBean Life-cycle
+=============================
+Spring container controls the life cycle of spring bean from instantiation to destruction.
+Spring bean has 4 life cycles states
+Instantation
+Intiazation
+Ready to use
+Destruction
+
+Interface
+=============
+IntializingBean
+DiposableBean
+<init-method>
+<destory-method>
+
+preDestroy
+postConstruct
+
+Q)What is BeanNameAware and Why it is used?
+BeanNameAware is an interface 
+setBeanNames(String)by overrding this method we will get th name(configured name)
+of the bean.this is used to know the confiugration name of the spring bean.
+public class SpringBean implements BeanNameAware
+{
+private String name;
+public void setName(String name)
+{
+this.name=name;
+}
+public voic setBeanNames(String beanname)
+{
+System.out.println("Bean name is"+beanname);
+}
+
+Q)What is BeanFactoryAware?
+BeanFactoryAware is an interface it is used to get the container information inn which spring bean is available.
+setBeanFactory(BeanFactory )
+public class SpringBean implements BeanNameAware
+{
+private String name;
+public void setName(String name)
+{
+this.name=name;
+}
+public voic setBeanFactory(BeanFactory factory)
+{
+System.out.println(factory);
+}
+
+Q)What is AppicationContextAware?
+ApplicationContextAware is an interface , it is also contain one method
+setApplicationContext(ApplicationContext)it is also used to get the container information in which spring bean available.
+
+public class SpringBean implements AppicationContextAware
+{
+private String name;
+public void setName(String name)
+{
+this.name=name;
+}
+public voic setApplicationContext(AppicationContextAware factory)
+{
+System.out.println(factory);
+}
+
+BeanPostProcessor
+============================
+BeanPostProcessor is an interface
+it has two methods
+postPorcessBeforeIntialization(Object,stirng)
+postPorcessAfterIntialization(Object,stirng)
+
+BeanProcessor is used to provide some common logic to all beans or to set of beans which are configured
+in spring configuraiton file.
+postPorcessBeforeIntialization(Object,stirng)
+this method is executed before the initialization method called.
+postPorcessAfterIntialization(Object,stirng)
+this method is executed after the initialization method called.
+these method will be called each spring ean,which is configured in spring confgiuration file.
+
+
+eg:
+spring_core2
+Bean Alias Project
+===================
+Bean Allias name can be used to define multiple names for a configured spring bean we can define alias names with "name" attribute of <bean>tag
+eg:
+spring_core3
+
+SingleTon
+============
+Generally we create singleton when there is not instance variables and static varibles to save the memory
+In General corejava application.
+eg: spring_core4
+
+So that is the way to create singleton object but here we are implementing our own logic to implement singleton.
+In the case of Spring singleton design patter is implcitly implemented. to make one object as singleton,or non-singleton just we need chage configuration in the spring configuration file but we need to implement our own logic.
+eg: spring_core5
+All possible value of Scope attributes
+===========================
+singleton
+prottotype
+request
+session
+globalsession
+thread
+note: request and session and globalsession we can not use springcoremodule we can use web level.
+
+
+==============================================================================
+Inheritance
+===========
+We hv two types of Inhteritance
+BeanLevelInheritance
+eg: spring_core6
+BeanConfigurationLevelInheritance
+spring_core7
+Q) What happens if both parent,child configuration has same property
+child property overrides parent property
+
+
+BeanFactory----------------->XmlBeanFactory(Resource res)
+Resource------------>FileSystemResource ,ClassPathResource
+
+ApplicationContext Extends BeanFactory
+
+ApplicationContext------------>ClasspathXmlApplicationcontext,XmlWebApplicationContext,FileSystemXmlApplicationContext
+
+
+=================================================================================================
+
+DifferntTechniques of performing setterInjection on different types of Bean property
+=====================================================================================
+1)When bean property type is  simple primitive datatype.
+
+class WishBean
+{
+String name;
+int age;
+public void setName(String name)
+{
+
+this.name=name;
+}
+public void setAge(int age)
+{
+this.age=age;
+}
+}
+
+corejava
+===========
+WishBean w=new WishBean();
+w.setName("shiva");
+w.setAge(30);
+
+springcfg file
+===============
+<bean id="w" class="WishBean">
+<property name="name"><value>shiva</value></property>
+<property name="age"><value>30</value></property>
+</bean>
+
+2)When Beanclass Object is dependent for other beanclass property.
+class DemoBean
+{
+int age;
+public void setAge(int age)
+{
+this.age=age;
+}
+}
+
+class WishBean 
+{
+DemoBean db=null;
+public void setDb(DemoBean db)
+{
+this.db=db;
+}}
+
+corejava
+============
+DemoBean d=new DemoBean();
+d.setAge(30);
+WishBean w=new WishBean();
+w.setDb(d);
+
+springcfgfile
+=================
+<bean id="d" class="DemoBean">
+<property name="age"><value>30</value</property>
+</bean>
+<bean id="w" class="wishBean">
+<property name="db"><ref bean="d"></ref></property>
+</bean>
+
+3)When Bean property is java.util.List dataStructure
+
+class WishBean
+{
+ArrayList coureses;
+public void setCourses(ArrayList al)
+{
+courses=al;
+}
+}
+
+corejava
+===========
+WishBean w=new WishBean();
+ArrayList al=new ArrayList();
+al.add("advjava");
+al.add("j2ee");
+w.setCourses(al);
+
+springcfg file
+================
+<bean id="w" class="WishBean">
+<property name="coureses"><list><value>advjava</value><value>j2ee</value></list></property>
+</bean>
+
+Note:
+When Bean property type is simple primtive data type and string class then we hv to use <value>tag
+When Bean class object is Dependent toother bean class property we hv to use<ref> tag
+In Application Development if u r useing List DataStructure related classes.
+then we will use <list> tag inside the spring cfg file.
+ In Application Development if u r useing Set DataStructure related classes.
+then we will use <set> tag inside the spring cfg file.
+ In Application Development if u r useing Map DataStructure related classes.
+then we will use <Map> tag inside the spring cfg file.
+ In Application Development if u r useing properties DataStructure related classes.
+then we will use <props> tag inside the spring cfg file.
+spring_core7
+spring_core8
+spring_core9
+MethodInjection
+=============
+If dependent ,dependecy both are singleton(scope="singleton')objects,then there is not problem in the injection of dependecy into dependent
+If dependent ,dpendency both are prototype(sope="protottype") objects,then there is no problem in the injection of dependecy into dependent.
+if dependent id prototype(scope=prototype) object ,dependecy is singleton (scope=singleton)objects,then there is no problem in the injection of dependecy into dependent.
+
+if dependent id singleton(scope=singleton) object ,dependecy is prototype (scope=prototype)objects,then there is  problem in the injection of dependecy into dependent.
+
+Bcz dependent object created only once,but dependent object we are expecting as prototype but as bcz of dependent object creation 
+happends only one,then there is no chance of creating multiple dependecy objects, and inject them into singleton dependent object.
+
+To solve this problem spring has given feature called MethodInjection.
+
+spring_10
+
+AutoWiring
+=========
+AutoWiring means automatically injecting the dependencies 
+Instead of  manuallyconfiguring the injection we done it automaticaly by useing auto wiring 
+To implement autowiring we use autowire attribute of<bean>tag
+There are five possible values to autowire attribute of<bean>tag
+no
+constructor
+byName
+byType
+autodetect
+no  ---------->it wont allow autowiring
+byName------>
+=========
+mainly it checks for 3 conditions if all these are valid then it injects the values by setter approach.
+1)Dependecy beanname
+2)Confiuredbean name
+3)settermethodname
+
+If dependecy name is "abc",beanconfiguration should be "abc" and setter name method should be "setAbc(----)
+When it finds autowire=byName for any bean configuration then it first checks for dependecy bean name in the dependent bean then it will checks weather any bean is configuraed in the in springcofigrationfile with the same name.
+if it finds then it will call corresponding setter method of the dependent bean.
+note: it doesnt bother about the arguments types it only bothers the names bcz it is autowirting byName.
+eg: spring_core10
+
+AutoWiring(byType)
+=================
+byType mainly it checks for 3 conditions if all these are valid then it injects the values by setter approach.
+1)Dependecy beanname
+2)Confiuredbean name
+3)settermethodArugmentType
+eg:spring_core11
+AutoWriring(Constructor)
+===================
+constructor mainly it checks for 3 conditions if all these are valid it injects the values by constructor approach
+1)Dependecy beanType
+2)Confiuredbean Type
+3)ConstructorArgumentType
+note: it wont bother about dependency name.it bothers about only  dependecy type. constructor arugument type.
+eg:
+spring_core12
+
+AutoWirring(autodetect)
+==================
+autodetect chooses constructor or byType.if a default constructor is found, byType gets applied if not found it will aply constructor.
+note: we will check once 2.5 version  or 2.0
+
+q)How to work with multiple spring configuration files?
+whether the spring confiration file size is huge,it is difficult to maintain,so in that scenarios we generally hv multiple configuration files.
+we can work with multiple springconfiguration files in two ways.
+By Importing other spring file into the current configruation file
+eg:<import resource="other-spring-beans.xml"/>
+By passing all spring bean configuration files as a string array to the constructor of the container.
+new classpathxmlApplicationContext(new String[]{"beans-1.xml","beans-2.xml","beans-3.xml"});
+
+Do HomeWork
+
+q)What is lazy-init attribute of <bean> tag?
+whe we are seing ApplicationContext container, and when we creates the spring container,it creates all the beans (hving scope value as singleton).
+we know that default scope is singleton.
+which are configured in the spring configuration file.
+----------->Some times we dont want to create the beans untill and unless the request comes (call getBean("beanref) for particular bean.
+if we configure lazy-init="true" for any bean,that bean object will not be created when we create the Application context based container. That will be created only when we call
+getBean("bean-ref");
+spring_core13
+Depends-on
+============
+Some times some bean creation is meaning ful only when is dependency is created
+
+spring_core14
+
+
+q)What is an inner Bean configuration?
+A spring bean configured with in<property> or <constructor-arg> tag useing <bean> tag is knon as inner bean configuration.
+While configuring innerBean name /id attribute are not usefull . so we say inner bean also called anonymous bean.
+spring_core16
+
+Q)What is p-namespace?
+use the special p-namespace to limit the amount of xml you hv to write to configure your beans.
+Instread of useing nested property elements,useing the p-namesapce your can use attributes AS PART OF THE BEAN ELEMENT that decribe your property
+values.The values of the attributes will be taken as the values for your properties.
+p-namespace used for setter injection.
+spring_core17
+
+Exlcuding a bean from being avialble for autoWiring
+========================================
+You can also(on a per-bean basis)totally exclude a bean from being on autowire . when configure beans using spring xml format,the auto-wire-candiate
+attribute of the bean element can be set to false. this has the effect of makint container totally exlcude that specific bean definiation from being avialbe to the autowiring .
+This can be use full when you hv a bean never injected into other beans via autowiring. it doen not mean that the excluded bean cannot itself be configured useing autowiring.
+it will not be considered as candidate for autowiring other beans.
+Nulls
+
+th null element is used to handle null values. spring treates empty arguments for properties. and the like as empty Strings.xml based configuration metdata results in the email property
+being set to the empty stirng value "" 
+<bean class="Exmplebean"
+<property name="email"><value>/></property>
+</bean>
+This is equivalent to examplebean.setEmail("");
+The special  null element may be used to indicate a null value .
+<bean class="Exmplebean"
+<property name="email"><null>/></property>
+</bean>
+examplebean.setEmail(null);
+
+
+dependecy-check
+=================
+Q)it is used to verify all dependencies of bean that are configured via injection
+are injected or not?
+To implement dependecy checking to a spring bean we make use of 'dependecy-check'
+attribute of <bean> tag
+
+This attribute takes any one of the four values.
+1)none(it wont check whether dependecies injected or not)
+2)simple(it checks all primitive dependecies injected or not)
+3)objects(it checks all the objects type dependencies injected or not)
+4)all(it checks both primitives and object type dependecies injected or not)
+if incase if we forgot to set any value either primitive or objective type it
+raise an exception called 'unsatisfiedDependecyException'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SpringJdbc/DAO Module
+================
+is one of the module of spring this will be used to build persistent tier of Enterprise Application(To develop DaoClasses)This module is used to access the data from the database(To do Database Operations)
+DAO
+====
+it is the Deisgn pattern which seperates Data Access Logic from BusinessLogic.Dao classes canbe developed with jdbc api,Hiberante ,Ibatis jpA,Spring-Jdbc.....
+If we use Jdbc Api Explictly in Dao Classes development there are some Common practice 
+CodeDuplication
+ResourceLeakage
+ErrorHandling
+
+SpringDao
+==========
+create table account(acc_no number(4)primary key,acc_name varchar2(20),acc_type varchar2(20),bal number(10,2));
+eg: spring_jdbc
+
+In the above application we apply springIoc features and Regular jdbc code.
+1)Exception handling logic
+2)TransactionManagement logic
+3)Resourceallocationlogic
+4)ResourceReleasignlogic
+
+1)Exception handling logic
+==========================
+when ever intracting with db all abnormal situations its generated sqlException.
+InSpirng
+============
+Spring Framework provides Fine GrindException handling
+specific Exceptions for each and every problem that occurs while dealing with the db.
+DataAccessException:
+======================
+org.sf.dao.DataAccessException.
+In spring Dao Exception hierarchy we hv a support to transform lo-level dataacessapi exceptions to the sprign dao exceptions.
+DataAcessException is the child class of RunTimeException so all spring dao exceptions are unchecked Exceptions.
+spring provides declarative exception handling mechanism, we can handle the exceptions
+in the springconfiguration file.
+
+Sprinf frme work hving the capability of establishing the connection,interacitn with db. Spring f/w simplifies the development of jdbc,hibernate......
+mutliple templates to interact with DB Som of the Templates are ....
+
+JdbcTemplate is a class using this we can simplify persistence layer develpment
+this class will take care of
+1)Exception handling logic
+2)TransactionManagement logic
+3)Resourceallocationlogic
+4)ResourceReleasignlogic
+spring providing JdbcTemplate Constructors
+================================
+jdbcTemplate()
+jdbcTemplate(DataSource)
+JdbcTemplate(DataSource ,boolean)
+jdbcTemplate()---> Construct a new jdbcTemplate object. This constructor
+is provided to allow java bean style of instantiation.
+
+note: when constructing an object using this constructor we need to use setDataSource() method
+to set the DataSource using this object to excuting the stmts.
+
+JdbcTemplate(DataSource )--> jdbctemplate object intitializing it with the
+given datasource to obtain connections for executing the requested stmt.
+
+jdbcTemplate(DataSource,boolean)-->
+useing datasource reference variable we can obtain the connction for excuting 
+the stmts. boolean value =true the the exception translator will not be initalized
+immediately.
+instead it waits until this jdbcTemplate object is used to execute the stmt. if the
+boolean argument value is false then the exception translator is intialized while
+constructing this object. 
+
+ teh jdbcTemplate (DataSource consructor is the same as using the jdbcTEmplate(DataSource,boolean) constructor with the second argument
+ as true,when a single argument constructor of jdbc template is used the 
+ exception translator is not immediately initalized.
+
+
+The JdbcTemplate is the basicelement and a class of the spring jdbc framework which includes the most common logic in useing the jdbc api to access data like
+handling the creation of connection,
+statement creation,
+statement execution,an
+d release of resource .and 
+it catches jdbc Exceptions.
+
+Useing JdbcTemplate to Execute sql Dml Statemets
+=========================================
+JdbcTemplate provides update() method for executing single sql dml statement.It supports jdbc statement and preparedsTatements
+style of executing the sql statments.
+public int update(string sql_stmt)---> excutes the given sql stmt using the jdbc
+ stmt object of the jdbc connection obtained using the datasource se to this jdbcTemplate object.
+ and return the update count the number of records affected by the stametn.
+
+ pubic int update(stirng sql_stmt,object[] params)-->
+  excutes the given sql stmt using the jdbc
+ preparedstmt object of the jdbc connection obtained using the datasource se to this jdbcTemplate object.
+
+sql_stmt can contain bind parameters(that is,'?' same as the sql stmts used with 
+preaparedstametn) The bind parameters are set with teh given arguments to 
+excute the statement. this method returns the update count the numberof recoreds 
+affected by the statement.
+
+
+ pubic int update(stirng sql_stmt,object[] params,int[]paramTypes)-->
+
+  excutes the given sql stmt using the jdbc
+ preparedstmt object of the jdbc connection obtained using the datasource se to this jdbcTemplate object.
+
+sql_stmt can contain bind parameters(that is,'?' same as the sql stmts used with 
+preaparedstametn) The bind parameters are set with the given arguments to 
+excute the statement.while setting the bind parameters instead of using setObject()
+a generic method like update() method. this method uses the parameters types under the third
+argument paramtypes, tha paramtypes are the constans from java.sql.Types.
+this method return the update count the number of records affected by the statement
+
+public int update(String sql_st,preapredStatemetnSetter pss)
+
+public int update(preapredStatementCreator psc)
+public int update(preapredStatementCreator psc,keyHolder kh)
+eg:
+spring_jdbc1
+spring_jdbc2
+
+Useing JdbcTemplate To execute sql select Queries
+=====================================
+1) prepare an sql query and execute
+2) read the results
+
+jdbcTemplate class includes query() to prepare and execute the sql queries .
+the spring jdbc framework provides three different tyeps of callback
+to read the results after executing the sql query using query() methods.
+the three callbacks of spring jdbc fw to retrieve the data
+1)ResultSetExtractor
+2)RowCallbackHandler
+3)RowMapper
+
+we can retriev the data from data base useing this three callback handlers
+REsultSetExtractor
+--------------------
+this is an intrface used by jdbcTEmplates query()methods. this.interface
+contains only one method 
+pubic object extractData(ResultSet rs)throws SqlException,DAtaAccessException
+we can extract the data from resultset referece varibles. 
+
+RowCallBackHandler-->Interface(Callback interface)
+-------------------
+this is interface used by jdbcTemplate query() mehtods.  
+
+public void processRow(ResultSet rs) throws SQLExcpetion
+
+this mehtod should not use next() method
+
+RowMapper
+-----------
+this is interface used by jdbcTemplate query() mehtods.  
+
+public  Object mapRow(ResultSet rs,int rowNum)throws SQLException
+this mehtod should not use next() method,on the resultset it requires to extract values of the current row,process the data on per-row basis and map the current row,process the data on per-row basis and map the current row values.
+
+JbcTemplate Query() methods
+---------------------------------
+jdbc template allowes us to excute the sql query and red the results
+using any one of the call back 
+
+public Object query(String sql,ResultSetExtrator res)-->
+
+given sql query using the jdbc stmt and allowes to read the result
+with a ResultSetExtractor
+
+public void query(String sql,RowCallbackHandler res)-->to allwoes
+reading the results with a RowCallbackHandler
+note: This method return type is List in spring2.0 . it return the result
+List in case if the callback implements REsultReader,it is a subtype of
+RowCallbackHandler is removed.after spring2.0 thus the reutn type of this
+method is chaned to void
+public List query(string sql,RowMapper rm) Excutes the given sql query using the
+jdbc stmt and allowes to read the resutls with a row mapper.
+
+jdbctemplate query methods
+public Object query(String sql,ResulstsetExtractor rs)
+public void query(String sql,RowCallbackHandler rch)
+public List query(String sql,RowCallbackHandler rch)
+
+public Object query(String sql,Object[]parms,ResulstsetExtractor rs)
+public void query(String sql,Object[]parms,RowCallbackHandler rch)
+public List query(String sql,Object[]parms,RowCallbackHandler rch)
+
+public Object query(String sql,Object[]parms,int[] paramtypes,ResulstsetExtractor rs)
+public void query(String sql,Object[]parms,int[] paramtypes,RowCallbackHandler rch)
+public List query(String sql,Object[]parms,int[] paramtypes,RowCallbackHandler rch)
+
+public Object query(String sql,PreparedStatementSetter pss,ResulstsetExtractor rs)
+public void query(String sql,PreparedStatementSetter pss,RowCallbackHandler rch)
+public List query(String sql,PreparedStatementSetter pss,RowCallbackHandler rch)
+
+
+public Object query(PreparedStatementCreator psc,ResulstsetExtractor rs)
+public void query(PreparedStatementCreator psc,RowCallbackHandler rch)
+public List query(PreparedStatementCreator psc,RowCallbackHandler rch)
+
+Note: eg: Spring_Jdbc3
+
+JdbcTemplate Conveniences To Read The Results
+====================================
+jdbcTemplate convenienc method for querying data
+
+public int queryForInt(Stirng sql_query)--> it excutes the given sql query using a jdbc stmt object.
+the sql query should result in single row and single column of int type.
+
+public int queryForInt(String sql_query,Object[]param)--
+it excutes the given sql query using a prepared stmt with the given params.
+The sqlQuery should result in a single row and single column of int type
+public int queryForInt(String sql_query,Object[]param,int[]paramtypes)--
+
+QueryForLong()--->
+public List QueryForList(String sql_query)--->it excutes morethen one row or one column. Returns a list of map object.
+one object is created for each row, one entry for each column with column name as key and its value as an entry value.
+public QueryForList(String sql_query,object[]params)-->Returns list of map object.
+one map object is created for each row, one entry for each column with column name as key and its values as an entry value
+public Map queryForMap(String sql_query)--> Teh sql query should results in a single row
+with one or more column of any type. Retursns a Map  object with one entry for each column with column name as 
+a key and its values as an entry value.
+
+
+public Map queryForMap(String sql_query,Object[]params)-->
+
+public Object queryForObject(String sql_query,Class type) The sql query should result in a single
+row with a single column compatible to the given type.
+
+public Object queryForObject(String sql_query,Object[]params,Class type,)
+
+public Object queryForObject(String sql_query,Object[]params,int[]paramTypes,Class type)
+private JdbcTemplate jt;
+	public EmployeeDAoDBImpl(JdbcTemplate jt) {
+		// TODO Auto-generated constructor stub
+		this.jt=jt;
+	}
+
+eg: spring_jdbc3
+
+CallingStoredProcedureUsingJdbcTemplate
+==============================
+
+
+public Map call(CallableStatementCreator csc,List declaredParameters)
+
+CallableStatementCreator is a callback interface used by the jdbcTemplate to get the
+CallableStatement to execute. The CallableStatementCreator interface contains only one method.
+
+public CallableStatement createCallableStatement(Connection con)throws sqlExcpetion
+
+
+1)w.a.p storeprocedure getDeptName(Stored Procedure)
+create or replace procedure getDeptName(dno number,name out varchar2)
+is
+begin
+select dname into name from dept where deptno=dno;
+end;
+eg:spring_jdbc5
+
+Understanding RDBMS Operations Classes
+================================
+SQLQuery Operation Class
+====================
+SqlQuery is abstract class it provides an abstracton to represent a reusable SQL query to access the database
+
+
+MappingSqlQuery is subclass of SqlQuery class.
+
+its hving one mehtods 	protected Object mapRow(ResultSet rs, int rowNum) throws SQLException 
+spring_jdbc6
+
+SqlUpdate
+=========
+SqlUpdate  class it provides an abstraction to represent a resuable sql dml statement to update the databse.
+
+
+sqlCall operationClass
+===================
+spring_jdbc7
+
+create table account (accno number(5),acname varchar2(10),bal number(5,2));
+
+Procedure
+=========
+create or replace procedure accountpro(accno_p number,name_p varchar2,bal_p number,result_p out varchar2)is
+begin
+insert into account values(accno_p,name_p,bal_p);
+commit;
+result_p:='success';
+end;
+=============================================================
+Q) What is the need of AbstractDAo?
+
+pubic class EmployeeDAoImpl.....
+{
+JdbcTemplate jt;
+public void setJt(JdbcTemplate jt)
+{
+this.jt=jt;
+}
+//employee specific dao methods
+}
+
+pubic class AccountDAoImpl.....
+{
+JdbcTemplate jt;
+public void setJt(JdbcTemplate jt)
+{
+this.jt=jt;
+}
+//account specific dao methods
+}
+
+If we observe the Dao classes the jdbcTemplate injection is repeating
+so why dot we hv a class which ishving common logic (JdbTemplate injection logic)and why dont we extend that one to all dao classes.
+public class AbstracDao
+{
+JdbcTemplate jt;
+public void setJt(JdbcTemplate jt)
+{
+this.jt=jt;
+}
+}
+if any one creates the object of Abstractdao we cannot get any services from AbstractDao object,bcz it just contains jdbcTemplate injects code.
+So,it is better to make this class as Abstract class.
+public abstract  class AbstracDao
+{
+JdbcTemplate jt;
+public void setJt(JdbcTemplate jt)
+{
+this.jt=jt;
+}
+public JdbcTemplate getJt(JdbcTemplate jt)
+{
+this.jt=jt;
+}
+}
+
+
+pulbic class AcccountDaoImple extends AbstractDao
+{
+----
+---------
+public void insert(Acccount ac)
+{
+getJt().update(.....);;
+}}
+
+pulbic class EmployeeDaoImple extends AbstractDao
+{
+----
+---------
+public void insert(Acccount ac)
+{
+getJt().update(.....);;
+}}
+
+eg:
+===
+spring_jdbc6
+Q)What is the need of JdbcDaoSupport?
+
+its similar to AbstractDao class which is given by Springf/w
+so instead of we developing the AbstractDao,We can use the spring given jdbc dao support.
+pulbic class AcccountDaoImple extends JdbcDaoSupport
+{
+----
+---------
+public void insert(Acccount ac)
+{
+getJt().update(.....);;
+}}
+
+
+pulbic class EmployeeDaoImple extends JdbcDaoSupport
+{
+----
+---------
+public void insert(Acccount ac)
+{
+getJt().update(.....);;
+}}
+Q)what is the flexbility given by JdbcDaosupport to configure Dao classes in spring configuration file?
+we can directly inject Datasource object(in the constructor approach) to Daoimpl objects instead of injecting JdbcTemplate obj.
+
+Whithout JdbcDaosupport in springcfg file
+DS---->jt--->daoimple
+Whith JdbcDaosupport in springcfg file
+ds
+daoimpl
+
+
+Q)What is is SimpleJdbcTemplate?
+its is very similar to JdbcTemplate object buts its useing the varargs features of jdk1.5 and named parameters.
+with JdbcTemplate
+============
+[]
+
+
+ex:
+===
+String query="insert into account values(?,?,?);
+JdbcTemplate.update(query, new Object[]{acc.getAccountNo(),acc.getname(),acc.getBalance())};
+
+with SimpleJdbcTemplate
+=======================
+String query="insert into account values(?,?,?);
+simpleJdbcTemplate.update(query,acc.getAccountNo(),acc.getname(),acc.getBalance());
+
+simplejdbctemplate does not provide all the mehtods of jdbctemplate as varargs concept hving some restrictions.
+What is SimpleJdbcDaoSupport?
+
+Named Parameters example with NamedParameterJdbctemplate
+=============================================
+In jdbcTemplate sql parameters are represented by a a special placeholder "?" symbol and bind it by position the problem is whenever the order
+of paramerter is changed.you hv to change the parameters bindings as well. Its error prone to maintain it
+
+To fix it you can use NamedParameters whereas SQL parmaters are defined by a starting colon  followed by a name,rathe than by positon.
+In addional The named parameters are only support. In simpleJdbcTemplate and NamedParameterJdbcTemplate
+
+
+NamedParameterJdbcDaoSupport
+==========================
+It is similar to jdbcDaosupport
+Instread of we writing injection logic(NamedParameterJdbcTemplate injection) 
+
+Note: The Named parameters are only support In simpleJdbcTemplate and NamedParameterJdbcTemplate.
+
+BatchUpdate
+=============
+In Some Cases you may required to perform multiple Dml Operations at a time If u perform those operations Individullay it will casuse performance issue.
+So Instead of performing Dml Operations individually we perform them as a batch.So that the performance of System will be increased.
+
+In JdbcFrameWork you can use JdbcTemplate class batchupdate() to perform the batch Operations.
+eg
+===
+spring_jdbc9
+
+Note:To perform  namedParameters and vargs  useing Batch operations we can take the support of SimpleJdbcTemplate and NamedParameterJdbcTemplate
+spring_jdbc10
+
+
+q)What is need of CallBack beans(ConnectionCallback,StatementCallback,PreoparedStatementCallback,CallableStatementCallBack)?
+
+When jdbctemplate is not providng the feature of jdbc technology Resources(Connection,Statement,PreparedStatement,CallableStatement) we will go for Callaback Mechanisam.
+
+q)What is the need of Creators(PreparedStatementCrator,CallableStatementCreator...?)
+It is similar to callback mechanism except 
+we just create the resources(PrparedStatement,CallableSTatement) amd return to spring container but we dont close them....
+We need to write the code to execute the Queries....
+
+public Object execute(ConnectionCallback)
+ConnectionCallback is an interface.it has doInConnection(Connection con)
+public Object execute(StatementCallback)
+
+public Object execute(String sql,PreparedStatementCallback)
+public Object execute(String sql,CallableStatementCallback)
+
+
+create or replace  procedure account_insert_proc(p_account number,p_name varchar2,p_bal number,p_result out varchar2)is begin
+insert into account values(p_accno,p_name,p_bal);
+p_result:='success';
+end

@@ -1,0 +1,103 @@
+Spring MVC Framework provides Model View Controller Architecture and used  to develope loosely coupled web applications.The MVC architecture used to divide the whole application into parts i.e Model,View and Controller.
+
+
+Controller is the one who takes the client request and pass the request to the appropriate Model .
+
+Model is responsible for all business logic and db operations.
+
+View is responsible for rendering the processed data to the client.its total look of the application.
+
+Advantages of Spring MVC:
+1) Using Spring MVC we can develop loosely coupled web applications.
+2)Spring MVC has the in built Front Controller.
+3) Validation and Exception Handling is simplified in Spring MVC.
+4)Spring MVC has the capability to integrate with other Frameworks easily.
+5)Using Spring MVC we can develop web applications and distributed applications also.
+
+Dispatcher-Servlet:
+
+Dispatcher-Servlet is a Front Controller and it is a built-in Controller class- is responsible for handling client request and dispatches the request to appropriate controller.
+
+
+DispatherServlet--->
+DispatcherServlet taking the request coming from view component and give the request
+to HandlerMappering
+
+HandlerMapping
+====================
+The HandlerMapping is resonsible for mapping the incoming request to the handler that can handle the request
+When the DispatcherServlet receives the request it  delegates the request to the HandlerMapping.Which Identifies the appropriate HandlerExecutionChain that can handle the request.
+
+The spring built in HandlerMappings
+==================================
+BeanNameUrlHandlerMapping
+SimpleUrlHandlerMapping
+ControllerClassNameHandlerMapping
+CommonsPathMapHandlerMapping
+
+Note: No more declaration for the Handler Mapping from spring 3.x
+like
+BeanNameUrlHandlerMapping
+SimpleUrlHandlerMapping
+ControllerClassNameHandlerMapping
+CommonsPathMapHandlerMapping
+All are replaced with a standard @RequestMapping annotation
+If the @RequestMapping is applied at class level(can apply at method level for multi-actionscontroller)it required to put a RequestMethod to indicate which method to handle the mapping request
+
+Types of Controllers
+=====================
+Controller/Handler classes are act as helperclasses to  interact with Model component...
+
+Controller
+AbstractCommandController
+SimpleFormController
+WizardFormController
+MultiActionController
+
+In Annotation SpringMvc,The controller class is no longer need to extends basedController like AbstractController or SimplrFormController ,just simply annotate the classs with @Controller annotation
+
+ModelAndView
+==============
+ModelandView represented by the class org.springframework.web.servlet.MOdleAndvie is
+return by the controller object back to the DispatcherServlet
+This class is just a Container class for holding the model and view information.
+The Model object represents some piece of information that can be used by the view to display the information 
+Any kind of view Technlogy can be plugged into the f/w with ease for eg:
+Excel,Jasper Reports,pdf,xslt,freeMarker,html,tiles,velocity...
+are the supported frameworks as of now
+The Model object(represented by org.sf.ui.ModelMap) internally matained as a Map for Stroing the information
+
+eg:
+ModelAndView mvnew ModeladnView("successview","greetingMsg",grettingMessage);
+
+The ModelAndView is a value object designed to hold model and view making it possible for a handler to return both model and view in a single return value.
+The ModelAndview Ojbect represents a model and view specified by the handler
+
+
+
+
+SpringMvcHandler Interceptors
+==============================
+SpringMvc allow to intercept web request through handler interceptors.
+The handlerInterceptor hv to implement the HandleInterceptor interface,which contains three methods,
+preHandler()
+Called before the Handlerexexution,returns a boolean value
+true : contineu the handle exeuction chain,
+false : stop the execution chain and return it
+postHandle()
+called after the handler execution,allow manipulate the MJodelandview object before render it to view page
+afterCompletion()
+called after the complete request has finished 
+
+ViewResolver
+==================
+The ViewResolver object is responsible to locate the view object
+that can render a view for this request.
+The DispatcherServlet uses the ViewResolver to resolve the logicalview name described by the ModelAndView Object to locate the view Object.
+Spring provides various built-in ViewResolver implementations that meet most of our requirement in locating the view The most commonly used Spring provided built-in viewResolver implementations are...
+UrlBasedViewResolver
+IntenalResourceViewResolver
+ResourceBundleViewResolver
+BeanNameViewResolver
+XmlViewResolver
+Each one of these viewResolver implementations presents  a unique way to transform the logical view name to view objects capable of rendering the view for the request.

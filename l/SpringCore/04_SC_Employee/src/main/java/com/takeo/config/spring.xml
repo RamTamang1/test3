@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<bean class="com.takeo.pojo.Employee" id="emp">
+<constructor-arg type="int"  index="0"  value="100"></constructor-arg>
+<constructor-arg type="java.lang.String"  index="1"  value="Welcome Boss"></constructor-arg>
+
+
+</bean>
+
+<bean class="com.takeo.pojo.Employee" id="emp1">
+<constructor-arg type="int"  index="0"  value="101"></constructor-arg>
+<constructor-arg type="java.lang.String"  index="1"  value="How is it"></constructor-arg>
+<constructor-arg type="int"  index="2"  value="25000"></constructor-arg>
+<constructor-arg type="java.lang.String"  index="3"  value="Hyderabad"></constructor-arg>
+
+
+</bean>
+
+
+
+
+
+
+
+</beans>

@@ -1,0 +1,95 @@
+Spring MVC Framework provides Model View Controller Architecture and used  to develope loosely coupled web applications.The MVC architecture used to divide the whole application into parts i.e Model,View and Controller.
+
+
+Controller is the one who takes the client request and pass the request to the appropriate Model .
+
+Model is responsible for all business logic and db operations.
+
+View is responsible for rendering the processed data to the client.its total look of the application.
+
+Advantages of Spring MVC:
+1) Using Spring MVC we can develop loosely coupled web applications.
+2)Spring MVC has the in built Front Controller.
+3) Validation and Exception Handling is simplified in Spring MVC.
+4)Spring MVC has the capability to integrate with other Frameworks easily.
+5)Using Spring MVC we can develop web applications and distributed applications also.
+
+Dispatcher-Servlet:
+
+Dispatcher-Servlet is a Front Controller and it is a built-in Controller class- is responsible for handling client request and dispatches the request to appropriate controller.
+
+
+
+
+Spring is a frame work s/w to simplify Java/j2ee Related applications 
+SpringWebMvc
+===============
+To Simplify WebDevelopment.
+
+Advantages Of Mvc
+=====================
+1)Clean separation of responsibilities
+(clear separation between presentation logic and application logic and dataAccess logic)
+2)Code reusability
+3)Single point entry for the application.
+4)Easy for maintain and future enhancements.
+5)Parallel development
+6)Supports multiple view technlogies.
+Drawbacks of Mvc
+===================
+Increased Complexity to implement Controlling logic.
+2)Implementing single point of entry (Controller)is difficult.
+So Using Mvc Implemented framework is advisable.,The popular Mvc Implemented webapplication framework.
+Struts(ApacheSoftwareFoundation)
+SpringMvc(SpringSource)
+Jsf(JavaServerFaces)
+ADF
+WebWork
+Tapsetry
+Wicket
+-----
+----
+What is the purpose of SpringMvc?
+SpringMvc(SpringSource) module designed based on Mvc Design pattern to simplify webapplicationdevelopment.
+Spring mvc is meant for making webapplication devleopement faster,cost-effective,and flexible.
+What are the java technlogies used in spring applciation?
+Servlet
+Jsp
+JavaBean
+
+Advantage of SpringMvc Framework
+=====================================
+Clear Separation of responsiblities.bcz it implements mvc design pattern...
+Loose coupling among Mode,view and Controller.
+In-Built from Controller...
+Validation impletation is simplified.
+User input is avialble in the object orieneted format.
+Internationalzation logic is simplifed.
+Spring mvc provides custom jsp tags,which are useful to implement presentation logic
+Spring can integrate with other webFramework like struts,webwork....
+Integration with other view Technologies like velocity,freemarket,excel,pdf...
+
+
+Controller
+============
+is a interface.
+
+useing this we can interact Model Component.
+
+HandlerMapping
+==================
+The HandlerMapping is responsible for mapping the incoming request to the handler that can handle the request.
+When the DispatcherServlet receives the request It delegates the request to the HandlerMapping.Which Identifies the appropiate HandlerExecutionChain that can handle the request.
+Handlermapping is a Interface The Spring f/w providing built-in HandlerMapping implementationsare
+1)BeanNameUrlHandlerMapping
+2)SimpleUrlHandlerMapping
+3)ControllerClassNameHandlerMapping
+4)CommonsPathMapHandlerMapping.
+
+
+
+create table userdetails
+(username varchar2(20),userpass varchar2(20),email varchar2(30),address varchar2(30),
+mobile number(10),type varchar2(5));
+
+insert into userdetails values('shiva','shiva','yannamsiva@gmail.com','hyd',9985538462,'admin');

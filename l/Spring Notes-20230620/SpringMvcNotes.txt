@@ -1,0 +1,171 @@
+Controller is the one who takes the client request and pass the request to the appropriate Model .
+
+Model is responsible for all business logic and db operations.
+
+View is responsible for rendering the processed data to the client.its total look of the application.
+
+SpringMvc
+----------
+Using springMvc can develop Web application
+
+Advantages of Spring MVC:
+1) Using Spring MVC we can develop loosely coupled web applications.
+2)Spring MVC has the in built Front Controller.
+3) Validation and Exception Handling is simplified in Spring MVC.
+4)Spring MVC has the capability to integrate with other Frameworks easily.
+5)Using Spring MVC we can develop web applications and distributed applications also.
+6)we can simply 118n
+
+Spring Mvc module avilable in Spring FrameWork
+
+In Spring 1.x version we have Spring Mvc and Spring WebMvc Modules
+
+Spring 2.x version web Module and mvc Module are combined released 
+spring web mvc Module.
+
+
+Spring mvc module is used to develop below two types of applications
+
+WebApplication
+Distrubted applications
+
+This Spring web mvc module is developed based on 2 design patterns
+a)Mvc Design Pattern
+b)Front Controller Design Pattern
+
+Spring mvc Components?
+========================
+1)FrontController(DispatcherServlet)
+2)Handler Mapper
+3)Controller
+4)ModelAndView
+5)ViewResolver
+6)View
+
+FrontController
+==================
+==> FrontController is responsible to perform pre-processing and post-proessing of Incoming Request
+
+   eg:   Capturing form data we can consider as pre-processing request
+         sending response back to client is call post-processing of request.
+
+In SpringWebMvc Based Application we will use DispatcherServlet as a FrontController
+DispatcherServlet is a predefined servlet provided by SpringMvc Module
+DispatcherServlet is a predefined Class it act as FrontController.
+
+DisPatcherServlet can be perform pre-processing and post-processing operations.
+
+HandlerMapper
+=============
+HandlerMapper is a predefined class avialble in SpringMvc
+
+HandlerMapper takes the request coming from DispatcherServlet 
+and Its Identify request Handler(Controller)
+
+Handler Mapping will identify request Handler and Returns Details to DispatcherServlet.
+
+The spring built in HandlerMappings
+==================================
+BeanNameUrlHandlerMapping
+SimpleUrlHandlerMapping
+ControllerClassNameHandlerMapping
+CommonsPathMapHandlerMapping
+
+Note : HandlerMapping is configured In SpringConfiguration file.
+
+Note: No more declaration for the Handler Mapping from spring 3.x
+like
+BeanNameUrlHandlerMapping
+SimpleUrlHandlerMapping
+ControllerClassNameHandlerMapping
+CommonsPathMapHandlerMapping
+Instead of using all These Handler mappings 
+All are replaced with a standard @RequestMapping annotation
+If the @RequestMapping is applied at class level(can apply at method level for multi-actionscontroller)it required to put a RequestMethod to indicate which method to handle the mapping request
+
+Controller
+================
+
+Controller is a program which is responsible to handler the request
+
+-->In spring Mvc Module we can create our own Controllers.
+
+Controller takes the request from Dispatcher Servlet and process the Request...
+
+And gives response back to DispatcherServlet in the form of ModelAndView Object.
+
+Controller/Handler classes are act as helperclasses to  interact with Model component...
+
+In SpringMvc Module hving Predefined Controller classes are avilable
+Controller(I)
+AbstractCommandController(c)
+SimpleFormController(c)
+WizardFormController(c)
+MultiActionController(c)
+
+These are outdated no one is not using , 3.x onwards @Controller Annotation
+
+--> We can create User define controller using @Controller Annotation
+
+ModelAndview
+=============
+Once Request Processing is completed Controller will return ModelAndView Object
+to DispatcherServlet
+
+ModelAndView is pre-defined Class avilable in springMvc Module
+
+ModelAndview class ,Model reporesents data and view represents logicalviewname
+Model --> Holds Data
+View ---> Logical ViewFileName
+
+
+ViewResolver
+============
+ViewResolver is predefined classes avilable on springmvc
+These viewResponse are resonsible to identify viewFiles(Location and Extension)
+
+
+
+
+The ViewResolver object is responsible to locate the view object
+that can render a view for this request.
+The DispatcherServlet uses the ViewResolver to resolve the logicalview name described by the ModelAndView Object to locate the view Object.
+Spring provides various built-in ViewResolver implementations that meet most of our requirement in locating the view The most commonly used Spring provided built-in viewResolver implementations are...
+UrlBasedViewResolver
+IntenalResourceViewResolver
+ResourceBundleViewResolver
+BeanNameViewResolver
+XmlViewResolver
+Each one of these viewResolver implementations presents  a unique way to transform the logical view name to view objects capable of rendering the view for the request.
+
+
+RequestExecution Flow In SpringMvc Application
+================================================
+
+1)DispatcherServlet takes the request Coming From client .
+DispatcherServlet is predefined Class it act as Frontcontroller.
+
+2)DispatcherServlet will send required Url to HanderMapper
+or
+DispatcherServlet gives the request to Handlermapper
+3)
+HandlerMapper will identify reuqestHandler(controller) which is responsible to handle the request and will send request handler details to DispatcherServlet
+
+or
+
+HandlerMapper takes the reuqest From DispatcherServlet ,It Identifies RequestHandler and 
+gives the response back to DispatcherServlet
+
+4) DispatcherServlet  gives the request to Contoller
+5)Controller  will process request and will send ModelAndView object to DispatcherServlet
+Model-->Data
+view -->logical filename
+
+6)DispatcherServlet send view Name to ViewResolver
+7)ViewResolver will identify  view location and extension details to DispatcherServlet
+8)DispatcherSerlvet will give Model and View details to view Component
+9)Model data will be rendered on view sends back to DispatcherServlet
+10)DispatcherServlet will send response back to a client
+
+
+

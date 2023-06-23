@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!-- Setter injection -->
+
+
+
+<!-- College Information -->
+<bean class="com.takeo.pojo.College" id="clg">
+
+<property name="cname" value="Takeo Ackademy"></property>
+
+<property name="faculties">
+<list>
+<value>shiva</value>
+<value>shiva</value>
+<value>shiva</value>
+<value>shiva</value>
+<value>shiva</value>
+<value>shiva</value>
+
+</list>
+
+
+
+</property>
+
+<property name="courses">
+<set>
+<value>Java</value>
+<value>React</value>
+<value>Angular</value>
+<value>JavaScript</value>
+
+</set>
+
+
+
+</property>
+
+
+
+
+
+</bean>
+
+
+</beans>
